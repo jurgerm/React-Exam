@@ -1,10 +1,13 @@
-import {Navbar, Menu, Start, Item, Buttons, End} from "../ui/Navbar";
-import {Link} from "react-router-dom";
-import {useAuth} from "../hooks/useAuth";
-import {Button} from "../ui/Button";
+import { Navbar, Menu, Start, Item, Buttons, End } from "../ui/Navbar";
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { Button } from "../ui/Button";
+import { StyButton } from "../atoms/StyButton";
 
 
 import logo from "../assets/logo.png"; // Tell webpack this JS file uses this image
+
+
 
 
 export const Nav = () => {
@@ -35,18 +38,26 @@ export const Nav = () => {
         </Buttons>
     ) : (
         <Buttons>
-            <Item as="span">
-                <Link className="button is-primary" to="/login">
-                    Login
-                </Link>
-            </Item>
+            <StyButton>
+                <Item as="span">
+                    <Link className="button is-primary" to="/login">
+                        Login
+                    </Link>
 
-            <Item as="span">
-                <Link className="button is-primary" to="/register">
-                    Register
-                </Link>
-            </Item>
+                </Item>
+            </StyButton>
+
+
+            <StyButton>
+                <Item as="span">
+                    <Link className="button is-primary" to="/register">
+                        Register
+                    </Link>
+                </Item>
+            </StyButton>
         </Buttons>
+
+
     );
 
     return (

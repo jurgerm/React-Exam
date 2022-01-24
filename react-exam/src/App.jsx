@@ -10,6 +10,7 @@ import { Add } from "./pages/Add";
 import { AuthProvider } from "./components/AuthProvider";
 import { RequireAuth } from "./components/RequireAuth";
 
+
 function App() {
   return (
     <AuthProvider>
