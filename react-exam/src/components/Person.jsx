@@ -5,8 +5,8 @@ import {Card, CardContent, CardFooter, CardFooterItem, Content} from "../ui/Card
 
 export const Person = ({personId, person, onDelete, onUpdate}) => {
     const [saveEnabled, setSaveEnabled] = useState(false);
-    const {name, lastname, age} = person;
-    const [model, setModel] = useState({name, lastname, age});
+    const {title, description} = person;
+    const [model, setModel] = useState({title, description});
 
     const toggleSaveEnabled = () => {
         setSaveEnabled(!saveEnabled);
@@ -15,12 +15,10 @@ export const Person = ({personId, person, onDelete, onUpdate}) => {
     const details = (
         <div className="details">
             <div className="fullname">
-                Full name: {name} {lastname}
+                Full name: {title} {description}
             </div>
 
-            <div className="age">Age: {age}</div>
-
-            <PersonForm
+                     <PersonForm
                 person={person}
                 disabled={!saveEnabled}
                 onUpdate={(update) => {

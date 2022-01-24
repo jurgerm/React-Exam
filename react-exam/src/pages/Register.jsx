@@ -36,7 +36,7 @@ export const Register = () => {
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <CardHeader>
-        <CardHeaderTitle>Register</CardHeaderTitle>
+        <CardHeaderTitle>Registration form: Please enter e-mail aas username and password below</CardHeaderTitle>
       </CardHeader>
 
       <CardContent>

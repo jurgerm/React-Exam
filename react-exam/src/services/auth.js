@@ -1,6 +1,8 @@
 import process from "process";
 
-const AUTH_URL = process.env.REACT_APP_BASE_URL+"/auth";
+// const AUTH_URL = process.env.REACT_APP_BASE_URL+"/v1/auth/";
+const AUTH_URL = "https://autumn-delicate-wilderness.glitch.me/v1/auth";
+console.log(AUTH_URL);
 
 
 export class Auth {

@@ -3,6 +3,10 @@ import {Link} from "react-router-dom";
 import {useAuth} from "../hooks/useAuth";
 import {Button} from "../ui/Button";
 
+
+import logo from "../assets/logo.png"; // Tell webpack this JS file uses this image
+
+
 export const Nav = () => {
     const auth = useAuth();
 
@@ -47,10 +51,17 @@ export const Nav = () => {
 
     return (
         <Navbar>
+            <img
+                alt="logo"
+                src={logo}
+            />
             <Menu>
+
                 {start}
                 <End>{buttons}</End>
             </Menu>
         </Navbar>
     );
 };
+
+

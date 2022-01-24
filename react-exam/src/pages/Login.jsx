@@ -35,7 +35,7 @@ export const Login = () => {
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <CardHeader>
-        <CardHeaderTitle>Login</CardHeaderTitle>
+        <CardHeaderTitle>Login form: Please provide valid e-mail as username and password</CardHeaderTitle>
       </CardHeader>
 
       <CardContent>

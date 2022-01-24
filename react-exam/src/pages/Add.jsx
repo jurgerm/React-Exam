@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Add = ({ className }) => {
-  const person = { name: "", lastname: "", age: "" };
+  const person = { title: "", description: ""};
   const [model, setModel] = useState(person);
   const onModelUpdate = (update) => setModel(update);
   const navigate = useNavigate();
