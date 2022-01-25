@@ -1,11 +1,13 @@
 import {useState} from "react";
-import {PeopleApi} from "../services/people-api";
-import {PersonForm} from "./PersonForm";
+import {SkillsApi} from "../services/skills-api";
+import {SkillForm} from "./SkillForm";
 import {Card, CardContent, CardFooter, CardFooterItem, Content} from "../ui/Card";
 
-export const Person = ({personId, person, onDelete, onUpdate}) => {
+import { StyButton } from "../atoms/StyButton";
+
+export const Skill = ({skillId, skill, onDelete, onUpdate}) => {
     const [saveEnabled, setSaveEnabled] = useState(false);
-    const {title, description} = person;
+    const {title, description} = skill;
     const [model, setModel] = useState({title, description});
 
     const toggleSaveEnabled = () => {
@@ -18,8 +20,8 @@ export const Person = ({personId, person, onDelete, onUpdate}) => {
                 Full name: {title} {description}
             </div>
 
-                     <PersonForm
-                person={person}
+                     <SkillForm
+                skill={skill}
                 disabled={!saveEnabled}
                 onUpdate={(update) => {
                     setModel(update);
@@ -41,18 +43,21 @@ export const Person = ({personId, person, onDelete, onUpdate}) => {
                         onClick={async () => {
                             if (!saveEnabled) return;
 
-                            await PeopleApi.update(personId, model);
-                            onUpdate(personId, model);
+                            await SkillsApi.update(skillId, model);
+                            onUpdate(skillId, model);
                         }}
                     >
-                        Save
+
+                        Add butonas
+                        <StyButton className="is-primary" type="submit" >
+                            Add
+                        </StyButton>
+
                     </CardFooterItem>
-                    <CardFooterItem as="a" onClick={toggleSaveEnabled}>
-                        Edit
-                    </CardFooterItem>
-                    <CardFooterItem as="a" onClick={onDelete}>
-                        Delete
-                    </CardFooterItem>
+
+                   
+
+                   
                 </CardFooter>
             </Card>
         </div>

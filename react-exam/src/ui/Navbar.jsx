@@ -1,5 +1,12 @@
 import {Element} from "./Element";
-import {classnames} from "../utils/Classnames";
+import { classnames } from "../utils/Classnames"; 
+import "./Navbar.css";
+
+export const NavbarWrapper = ({ className, ...props }) =>
+    Element({ as: "div", className: classnames("navbar", className), ...props });
+
+export const NavLinks = ({ className, ...props }) =>
+    Element({ as: "nav", className: classnames("navLinks", className), ...props });
 
 export const Start = ({className, ...rest}) =>
     Element({as: "div", className: classnames("navbar-start", className), ...rest});

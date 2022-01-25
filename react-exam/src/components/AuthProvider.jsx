@@ -2,18 +2,18 @@ import {useState} from "react";
 import {AuthContext} from "../hooks/useAuth";
 import {Auth} from "../services/auth";
 
-// extract username from jwt
-const getUsername = (token) => {
-    let username = null;
+// extract email from jwt
+const getEmail = (token) => {
+    let email = null;
 
     if (token) {
         const tokenPayload = token.split(".")[1];
         const decodedPayload = atob(tokenPayload);
         const parsedPayload = JSON.parse(decodedPayload);
-        username = parsedPayload.username;
+        email = parsedPayload.email;
     }
 
-    return username
+    return email
 }
 
 export const AuthProvider = ({children}) => {
@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
 
     const [state, setState] = useState({
         token,
-        username: getUsername(token),
+        email: getEmail(token),
         error: null,
     });
 
@@ -37,7 +37,7 @@ export const AuthProvider = ({children}) => {
             return {error: res.error};
         }
 
-        setState(({error: null, token: res.token, username: getUsername(res.token)}));
+        setState(({error: null, token: res.token, email: getEmail(res.token)}));
         sessionStorage.setItem("token", res.token);
 
         return {token: res.token};
@@ -47,7 +47,7 @@ export const AuthProvider = ({children}) => {
         setState({
             token: null,
             error: null,
-            username: null
+            email: null
         })
 
         sessionStorage.removeItem("token");

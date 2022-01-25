@@ -5,7 +5,7 @@ import { Nav } from "./organisms/Navbar";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Container } from "./ui/Container";
-import { People } from "./pages/People";
+import { Skills } from "./pages/Skills";
 import { Add } from "./pages/Add";
 import { AuthProvider } from "./components/AuthProvider";
 import { RequireAuth } from "./components/RequireAuth";
@@ -22,7 +22,7 @@ function App() {
             path="/"
             element={
               <RequireAuth>
-                <People />
+                <Skills />
               </RequireAuth>
             }
           />
@@ -35,7 +35,10 @@ function App() {
 
           <Route path="/login" element={<Login />} />
 
-          <Route path="/register" element={<Register />} />
+          <Route path="/register"
+            element={
+              <Register />
+            } />
 
         </Routes>
       </Container>

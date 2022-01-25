@@ -8,11 +8,11 @@ import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/C
 export const Login = () => {
   const navigate = useNavigate();
   const { login, error } = useAuth();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const onPasswordChange = (e) => {
@@ -21,9 +21,9 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !password) return;
+    if (!email || !password) return;
 
-    const res = await login(username, password);
+    const res = await login(email, password);
 
     if (res.error) {
       return;
@@ -35,15 +35,15 @@ export const Login = () => {
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <CardHeader>
-        <CardHeaderTitle>Login form: Please provide valid e-mail as username and password</CardHeaderTitle>
+        <CardHeaderTitle>Login form: Please provide  e-mail and password</CardHeaderTitle>
       </CardHeader>
 
       <CardContent>
         <Content>
-          <Field onChange={onUsernameChange} name="username" required />
-          <Field onChange={onPasswordChange} name="password" type="password" required minLength={8} />
+          <Field onChange={onEmailChange} name="email" placeholder="testas@testas.com" required />
+          <Field onChange={onPasswordChange} name="password" type="password" placeholder="testas123" required minLength={8} />
 
-          <Button className="is-primary" type="submit" disabled={!username || !password}>
+          <Button className="is-primary" type="submit" disabled={!email || !password}>
             Login
           </Button>
 

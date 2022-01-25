@@ -1,8 +1,8 @@
 import { Navbar, Menu, Start, Item, Buttons, End } from "../ui/Navbar";
-import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "../ui/Button";
 import { StyButton } from "../atoms/StyButton";
+import NavLink from "./NavLink";
 
 
 import logo from "../assets/logo.png"; // Tell webpack this JS file uses this image
@@ -16,11 +16,11 @@ export const Nav = () => {
     const start = auth.token ? (
         <Start>
             <Item as="span">
-                <Link to="/">Home</Link>
+                <NavLink to="/">Home</NavLink>
             </Item>
 
             <Item as="span">
-                <Link to="/add">Add</Link>
+                <NavLink to="/add">Add</NavLink>
             </Item>
         </Start>
     ) : null
@@ -40,19 +40,20 @@ export const Nav = () => {
         <Buttons>
             <StyButton>
                 <Item as="span">
-                    <Link className="button is-primary" to="/login">
+                        <NavLink className="button is-primary" to="/login">
                         Login
-                    </Link>
+                        </NavLink>
 
                 </Item>
             </StyButton>
 
 
             <StyButton>
+
                 <Item as="span">
-                    <Link className="button is-primary" to="/register">
+                        <NavLink className="button is-primary" to="/register">
                         Register
-                    </Link>
+                    </NavLink>
                 </Item>
             </StyButton>
         </Buttons>

@@ -7,12 +7,12 @@ import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/C
 
 export const Register = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const onUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const onPasswordChange = (e) => {
@@ -21,9 +21,9 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !password) return;
+    if (!email || !password) return;
 
-    const res = await Auth.register(username, password);
+    const res = await Auth.register(email, password);
 
     if (res.error) {
       setError(res.error);
@@ -36,15 +36,16 @@ export const Register = () => {
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <CardHeader>
-        <CardHeaderTitle>Registration form: Please enter e-mail aas username and password below</CardHeaderTitle>
+        <CardHeaderTitle>Registration form: Please enter e-mail and password </CardHeaderTitle>
       </CardHeader>
 
       <CardContent>
         <Content>
-          <Field onChange={onUsernameChange} name="username" required />
+          <Field onChange={onEmailChange} name="email" required />
+          
           <Field onChange={onPasswordChange} name="password" type="password" required minLength={8} />
 
-          <Button className="is-primary" type="submit" disabled={!username || !password}>
+          <Button className="is-primary" type="submit" disabled={!email || !password}>
             Register
           </Button>
 

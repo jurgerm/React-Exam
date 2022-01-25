@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Field } from "../organisms/Field";
 
-export const PersonForm = ({ person, onUpdate, className, disabled }) => {
-    const [title, setTitle] = useState(person.title);
-    const [description, setDescription] = useState(person.description);
+export const SkillForm = ({ skill, onUpdate, className, disabled }) => {
+    const [title, setTitle] = useState(skill.title);
+    const [description, setDescription] = useState(skill.description);
 
 
     const changeTitle = (e) => {
