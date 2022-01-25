@@ -9,39 +9,46 @@ import { Skills } from "./pages/Skills";
 import { Add } from "./pages/Add";
 import { AuthProvider } from "./components/AuthProvider";
 import { RequireAuth } from "./components/RequireAuth";
-
+import { MessageProvider } from "./components/MessageProvider";
+import { MessageContainer } from "./organisms/MessageContainer";
 
 function App() {
   return (
     <AuthProvider>
-      <Container className="mt-4">
-        <Nav />
-        <Routes>
+      <MessageProvider>
+        <Container className="mt-4">
+          <Nav />
 
-          <Route
-            path="/"
-            element={
+          <MessageContainer />
+
+          <Routes>
+
+            <Route
+              path="/"
+              element={
+                <RequireAuth>
+                  <Skills />
+                </RequireAuth>
+              }
+            />
+
+            <Route path="/add" element={
               <RequireAuth>
-                <Skills />
+                <Add />
               </RequireAuth>
-            }
-          />
-
-          <Route path="/add" element={
-            <RequireAuth>
-              <Add />
-            </RequireAuth>
-          } />
-
-          <Route path="/login" element={<Login />} />
-
-          <Route path="/register"
-            element={
-              <Register />
             } />
 
-        </Routes>
-      </Container>
+            <Route path="/login" element={<Login />} />
+
+            <Route path="/register"
+              element={
+                <Register />
+              } />
+
+          </Routes>
+
+        </Container>
+      </MessageProvider>
     </AuthProvider>
   );
 }

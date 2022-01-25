@@ -4,6 +4,8 @@ import { Card, CardContent, CardFooter, CardFooterItem, Content } from "../ui/Ca
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { StyButton } from "../atoms/StyButton";
+import { useMessagesContext } from "../hooks/MessagesContext";
 
 export const Add = ({ className }) => {
   const skill = { title: "", description: "" };
@@ -11,12 +13,30 @@ export const Add = ({ className }) => {
   const onModelUpdate = (update) => setModel(update);
   const navigate = useNavigate();
 
+  const { addMessage, removeMessage } = useMessagesContext();
+
   const { token } = useAuth();
 
   const onSave = async () => {
-    const res = await SkillsApi.add(model, token);
-    if (res.errors) return console.warn("Bad payload");
-    navigate("/", { state: { added: res } });
+    try {
+      addMessage('Saving new skill');
+      const res = await SkillsApi.add(model, token);
+      console.log({res});
+      if (res.err) {
+        console.warn("Bad payload");
+        addMessage(`ERROR: ${res.err}`);
+        return;
+      }
+      removeMessage();
+      //navigate("/", { state: { added: res } })
+      navigate("/");
+
+    }
+    catch (err) {
+      console.log({ err });
+      addMessage(`ERROR: ${err}`);
+      setModel([]);
+    }
   };
 
   return (
@@ -28,8 +48,10 @@ export const Add = ({ className }) => {
       </CardContent>
 
       <CardFooter>
-        <CardFooterItem as="a" onClick={onSave}>
-          Save
+        <CardFooterItem as="a">
+          <StyButton onClick={onSave}>
+            Save
+          </StyButton>
         </CardFooterItem>
       </CardFooter>
     </Card>

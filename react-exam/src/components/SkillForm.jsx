@@ -5,7 +5,6 @@ export const SkillForm = ({ skill, onUpdate, className, disabled }) => {
     const [title, setTitle] = useState(skill.title);
     const [description, setDescription] = useState(skill.description);
 
-
     const changeTitle = (e) => {
         setTitle(e.target.value);
     };
@@ -13,7 +12,6 @@ export const SkillForm = ({ skill, onUpdate, className, disabled }) => {
     const changeDescription = (e) => {
         setDescription(e.target.value);
     };
-
 
     useEffect(() => {
         onUpdate({

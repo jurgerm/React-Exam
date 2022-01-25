@@ -17,3 +17,23 @@ html, body {
 .skill .fullname {
   font-size: 1.1rem;
 }
+
+.card {
+  border: solid red 1px;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  max-width: 300px;
+  width: 30%;
+  display: inline-block;
+}
+
+.messageContainer {
+  border: solid red 3px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.messageContainer .content{
+  margin-right: 10px;
+}
