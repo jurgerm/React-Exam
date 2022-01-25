@@ -1,6 +1,5 @@
 import {Element} from "./Element";
 import { classnames } from "../utils/Classnames"; 
-import "./Navbar.css";
 
 export const NavbarWrapper = ({ className, ...props }) =>
     Element({ as: "div", className: classnames("navbar", className), ...props });
@@ -20,8 +19,11 @@ export const Item = ({as, className, ...rest}) =>
 export const Buttons = ({className, ...rest}) =>
     Element({as: "div", className: classnames("buttons", className), ...rest});
 
-export const Menu = ({className, ...rest}) =>
-    Element({as: "div", className: classnames("navbar-menu", className), ...rest});
+export const Menu = ({ className, ...rest }) =>
+    Element({ as: "div", className: classnames("navbar-menu", className), ...rest });
+
+export const Logo = ({ className, ...rest }) =>
+    Element({ as: "div", className: classnames("logo-container", className), ...rest });
 
 export const Navbar = ({className, ...rest}) =>
     Element({as: "nav", className: classnames("navbar", className), ...rest});

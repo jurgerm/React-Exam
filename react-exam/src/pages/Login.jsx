@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMessagesContext } from "../hooks/MessagesContext";
 import { useAuth } from "../hooks/useAuth";
 import { Field } from "../organisms/Field";
 import { Button } from "../ui/Button";
@@ -7,9 +8,11 @@ import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/C
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { login, error } = useAuth();
+  const { login, logout, error } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { addMessage, removeMessage } = useMessagesContext();
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,21 +24,45 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) return;
+    try {
+      if (!email ) {
+        addMessage(`Enter your email`);
+        return;
+      }
+      if (!email || !password) {
+        addMessage(`Enter your password`);
+        return;
+      }
 
-    const res = await login(email, password);
+      const res = await login(email, password);
+      console.log({ res });
+      if (res.error) {
+        console.warn("Bad payload");
+        addMessage(`ERROR: ${res.error}`);
+        logout();
+        return;
+      }
+      if (!res.token) {
+        console.warn("No token");
+        addMessage(`ERROR: Please, check your email address or password. `);
+        logout();
+        return;
+      }
+      removeMessage();
 
-    if (res.error) {
-      return;
+      navigate("/");
     }
-
-    navigate("/");
+    catch (err) {
+      console.log({ err });
+      addMessage(`ERROR: ${err}`);
+      logout();
+    }
   };
 
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <CardHeader>
-        <CardHeaderTitle>Login form: Please provide  e-mail and password</CardHeaderTitle>
+        <CardHeaderTitle>Login form</CardHeaderTitle>
       </CardHeader>
 
       <CardContent>

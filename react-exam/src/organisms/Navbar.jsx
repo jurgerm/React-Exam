@@ -1,4 +1,4 @@
-import { Navbar, Menu, Start, Item, Buttons, End } from "../ui/Navbar";
+import { Navbar, Menu, Start, Item, Buttons, End, Logo } from "../ui/Navbar";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "../ui/Button";
 
@@ -52,10 +52,12 @@ export const Nav = () => {
 
     return (
         <Navbar>
-            <img
-                alt="logo"
-                src={logo}
-            />
+            <Logo>
+                <img
+                    alt="logo"
+                    src={logo}
+                />
+            </Logo>
             <Menu>
                 {start}
                 <End>{buttons}</End>
