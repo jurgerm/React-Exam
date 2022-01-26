@@ -1,13 +1,10 @@
 import { useMessagesContext } from "../hooks/MessagesContext";
+import { StyButton } from "../atoms/StyButton";
 
 export const MessageContainer = () => {
-
-  const aaaa = useMessagesContext();
-  console.log({ aaaa });
-
+  
   const { message, removeMessage } = useMessagesContext();
   console.log({ message });
-
 
   const closeMessage = () => {
     removeMessage();
@@ -16,9 +13,9 @@ export const MessageContainer = () => {
   const messageContainerContent = (message != null) ? (
     <div className="messageContainer">
       <span className="content">{message}</span>
-      <button onClick={closeMessage}>
+      <StyButton onClick={closeMessage}>
         X
-      </button>
+      </StyButton>
     </div >
   ) : null;
 

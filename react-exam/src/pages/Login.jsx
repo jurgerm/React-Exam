@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useMessagesContext } from "../hooks/MessagesContext";
 import { useAuth } from "../hooks/useAuth";
 import { Field } from "../organisms/Field";
-import { Button } from "../ui/Button";
+import { StyButton } from "../atoms/StyButton";
 import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/Card";
 
 export const Login = () => {
@@ -81,9 +81,9 @@ export const Login = () => {
             onChange={onPasswordChange}
           />
 
-          <Button className="is-primary" type="submit" disabled={!email || !password}>
+          <StyButton className="is-primary" type="submit" disabled={!email || !password}>
             Login
-          </Button>
+          </StyButton>
 
           <div style={{ color: "red" }}>{error}</div>
         </Content>

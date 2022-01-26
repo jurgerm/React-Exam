@@ -1,5 +1,7 @@
 :root {
   --main-color: #60dafb;
+  --main-color-inverted: #fefefe;
+  --main-color-contrast: #333333;
 }
 
 html,
@@ -9,6 +11,12 @@ body {
 
 nav.navbar {
   text-align: center;
+  margin-bottom: 1rem;
+}
+
+nav .navbar-start, 
+nav .navbar-end{
+    padding: 0.5rem;
 }
 
 .logo-container {
@@ -43,8 +51,7 @@ nav.navbar {
 .card {
   border: solid var(--main-color) 1px;
   border-radius: 5px;
-  margin: 1rem;
-  padding: 0.5rem;
+  margin: 0.5rem;
   max-width: 300px;
   width: 30%;
   display: inline-block;
@@ -52,7 +59,19 @@ nav.navbar {
 
 .card .card-header {
   text-align: center;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.card .card-content
+{
   padding: 0.5rem;
+}
+
+.card .card-footer-item
+{
+  text-align: center;
 }
 
 .messageContainer {

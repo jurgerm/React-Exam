@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Skill } from "../components/Skill";
 import { useAuth } from "../hooks/useAuth";
 import { SkillsApi } from "../services/skills-api";
@@ -7,7 +6,6 @@ import { useMessagesContext } from "../hooks/MessagesContext";
 
 export const Skills = () => {
     const [skills, setSkills] = useState();
-    const { state } = useLocation();
     const { token } = useAuth();
 
     const { addMessage, removeMessage } = useMessagesContext();
@@ -17,21 +15,21 @@ export const Skills = () => {
         addMessage("Loading list of skils");
         // fetch skills from api
         try {
-            const visiskilsai = await SkillsApi.all(token);
+            const allSkills = await SkillsApi.all(token);
 
-            if (visiskilsai.error)
+            if (allSkills.error)
             {
-                addMessage(`ERROR: ${visiskilsai.error}`);
+                addMessage(`ERROR: ${allSkills.error}`);
                 setSkills([]);
                 return;
             }
             // save fetched skills to local state
-            setSkills(visiskilsai);
+            setSkills(allSkills);
 
             removeMessage();
 
-            console.log({ visiskilsai })
-            if (!visiskilsai || visiskilsai.length === 0) {
+            console.log({ allSkills })
+            if (!allSkills || ( allSkills && allSkills.length === 0)) {
                 addMessage("There are no skills in list.");
             }
         }
@@ -47,17 +45,8 @@ export const Skills = () => {
         fetchSkills();
     }, []);
 
-    // check if skill obj was added, if yes, save it to the array
-    // useEffect(() => {
-    //     if (!state) return;
-
-    //     if (state.added) {
-    //         add(state.added);
-    //     }
-    // }, [state]);
-
-    if (!skills) {
-        return <span>aaaaa</span>;
+    if (!skills || (skills && skills.length === 0 ) ) {
+        return <span> ¯\_(ツ)_/¯ </span>;
     }
     console.log(skills);
 

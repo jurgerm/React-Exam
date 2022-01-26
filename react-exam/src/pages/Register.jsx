@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field } from "../organisms/Field";
 import { Auth } from "../services/auth";
-import { Button } from "../ui/Button";
+import { StyButton } from "../atoms/StyButton";
 import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/Card";
 import { useMessagesContext } from "../hooks/MessagesContext";
 import { useAuth } from "../hooks/useAuth";
@@ -67,9 +67,9 @@ export const Register = () => {
 
           <Field onChange={onPasswordChange} name="password" type="password" required minLength={8} />
 
-          <Button className="is-primary" type="submit" disabled={!email || !password}>
+          <StyButton type="submit" disabled={!email || !password}>
             Register
-          </Button>
+          </StyButton>
         </Content>
       </CardContent>
     </Card>

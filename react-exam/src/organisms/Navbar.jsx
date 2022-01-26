@@ -1,8 +1,8 @@
 import { Navbar, Menu, Start, Item, Buttons, End, Logo } from "../ui/Navbar";
 import { useAuth } from "../hooks/useAuth";
-import { Button } from "../ui/Button";
+import { StyButton } from "../atoms/StyButton";
 
-import NavLink from "./NavLink";
+import NavLinkStyled from "./NavLinkStyled";
 
 import logo from "../assets/logo.png"; // Tell webpack this JS file uses this image
 
@@ -12,14 +12,32 @@ export const Nav = () => {
     const start = auth.token ? (
         <Start>
             <Item as="span">
-                <NavLink to="/">Home</NavLink>
+                <NavLinkStyled exact to="/"
+                    activeClassName="active"
+                >Home</NavLinkStyled>
             </Item>
 
             <Item as="span">
-                <NavLink to="/add">Add</NavLink>
+                <NavLinkStyled to="/add"
+                    activeClassName="active"
+                >Add</NavLinkStyled>
             </Item>
         </Start>
-    ) : null
+    ) : (
+        <Start>
+            <Item as="span">
+                <NavLinkStyled to="/login"
+                    activeClassName="active"
+                >Login</NavLinkStyled>
+            </Item>
+
+            <Item as="span">
+                <NavLinkStyled to="/register"
+                    activeClassName="active"
+                >Register</NavLinkStyled>
+            </Item>
+        </Start>
+    );
 
     const buttons = auth.token ? (
         <Buttons>
@@ -28,27 +46,13 @@ export const Nav = () => {
             </Item>
 
             <Item as="span">
-                <Button className="is-link" onClick={() => auth.logout()}>
+                <StyButton className="is-link" onClick={() => auth.logout()}>
                     Logout
-                </Button>
+                </StyButton>
             </Item>
 
         </Buttons>
-    ) : (
-        <Buttons>
-            <Item as="span">
-                <NavLink className="button is-primary" to="/login">
-                    Login
-                </NavLink>
-            </Item>
-
-            <Item as="span">
-                <NavLink className="button is-primary" to="/register">
-                    Register
-                </NavLink>
-            </Item>
-        </Buttons>
-    );
+    ) : null;
 
     return (
         <Navbar>

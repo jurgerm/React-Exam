@@ -1,6 +1,11 @@
 import { SkillsApi } from "../services/skills-api";
 import { SkillForm } from "../components/SkillForm";
-import { Card, CardContent, CardFooter, CardFooterItem, Content } from "../ui/Card";
+import {
+  Card, CardContent,
+  CardHeader, CardHeaderTitle,
+  Content,
+  CardFooter, CardFooterItem
+} from "../ui/Card";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
@@ -13,7 +18,7 @@ export const Add = ({ className }) => {
   const onModelUpdate = (update) => setModel(update);
   const navigate = useNavigate();
 
-  const { addMessage, removeMessage } = useMessagesContext();
+  const { addMessage } = useMessagesContext();
 
   const { token } = useAuth();
 
@@ -21,14 +26,15 @@ export const Add = ({ className }) => {
     try {
       addMessage('Saving new skill');
       const res = await SkillsApi.add(model, token);
-      console.log({res});
+      console.log({ res });
       if (res.err) {
         console.warn("Bad payload");
         addMessage(`ERROR: ${res.err}`);
         return;
       }
-      removeMessage();
-      //navigate("/", { state: { added: res } })
+      // this message will be displayed because next page clears messages and shows own.
+      addMessage(`New skill was added "${skill.title}"`);
+
       navigate("/");
 
     }
@@ -41,6 +47,11 @@ export const Add = ({ className }) => {
 
   return (
     <Card>
+
+      <CardHeader>
+        <CardHeaderTitle>Add new skill</CardHeaderTitle>
+      </CardHeader>
+
       <CardContent>
         <Content>
           <SkillForm className={className} skill={skill} onUpdate={onModelUpdate} />
@@ -48,7 +59,7 @@ export const Add = ({ className }) => {
       </CardContent>
 
       <CardFooter>
-        <CardFooterItem as="a">
+        <CardFooterItem>
           <StyButton onClick={onSave}>
             Save
           </StyButton>
