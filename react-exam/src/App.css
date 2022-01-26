@@ -1,0 +1,92 @@
+:root {
+  --main-color: #60dafb;
+  --main-color-inverted: #fefefe;
+  --main-color-contrast: #333333;
+}
+
+html,
+body {
+  width: 100vw;
+}
+
+nav.navbar {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+nav .navbar-start, 
+nav .navbar-end{
+    padding: 0.5rem;
+}
+
+.logo-container {
+  max-width: 100px;
+  display: inline-block;
+}
+
+.logo-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  display: block;
+
+}
+
+.skill {
+  margin-bottom: 1rem;
+}
+
+.skill .fullname {
+  font-size: 1.1rem;
+}
+
+.card {
+  border: solid var(--main-color) 1px;
+  border-radius: 5px;
+  margin: 0.5rem;
+  max-width: 300px;
+  width: 30%;
+  display: inline-block;
+}
+
+.card .card-header {
+  text-align: center;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.card .card-content
+{
+  padding: 0.5rem;
+}
+
+.card .card-footer-item
+{
+  text-align: center;
+}
+
+.messageContainer {
+  border: solid var(--main-color) 3px;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.messageContainer .content {
+  margin-right: 10px;
+}
+
+
+footer {
+  text-align: center;
+  margin: 1rem;
+  padding: 00.5rem;
+}
