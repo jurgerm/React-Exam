@@ -4,12 +4,15 @@ import { Field } from "../organisms/Field";
 import { Auth } from "../services/auth";
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader, CardHeaderTitle, Content } from "../ui/Card";
+import { useMessagesContext } from "../hooks/MessagesContext";
+import { useAuth } from "../hooks/useAuth";
 
 export const Register = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const { addMessage } = useMessagesContext();
+  const { logout } = useAuth();
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,16 +24,35 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) return;
+    try {
+      if (!email) {
+        addMessage(`Enter your email`);
+        return;
+      }
+      if (!password) {
+        addMessage(`Enter your password`);
+        return;
+      }
+      const res = await Auth.register(email, password);
 
-    const res = await Auth.register(email, password);
+      if (res.error) {
+        console.warn("Bad payload");
+        addMessage(`ERROR: ${res.error}`);
+        logout();
+        return;
+      }
 
-    if (res.error) {
-      setError(res.error);
-      return;
+      addMessage("Registration is succesfull. Now You can login using these credentials.");
+
+      navigate("/login");
+
     }
-    setError(null);
-    navigate("/login");
+    catch (err) {
+      console.log({ err });
+      addMessage(`ERROR: ${err}`);
+      logout();
+    }
+
   };
 
   return (
@@ -42,14 +64,12 @@ export const Register = () => {
       <CardContent>
         <Content>
           <Field onChange={onEmailChange} name="email" required />
-          
+
           <Field onChange={onPasswordChange} name="password" type="password" required minLength={8} />
 
           <Button className="is-primary" type="submit" disabled={!email || !password}>
             Register
           </Button>
-
-          <div style={{ color: "red" }}>{error}</div>
         </Content>
       </CardContent>
     </Card>

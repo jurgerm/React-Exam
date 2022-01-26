@@ -25,11 +25,11 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!email ) {
+      if (!email) {
         addMessage(`Enter your email`);
         return;
       }
-      if (!email || !password) {
+      if (!password) {
         addMessage(`Enter your password`);
         return;
       }
@@ -67,8 +67,19 @@ export const Login = () => {
 
       <CardContent>
         <Content>
-          <Field onChange={onEmailChange} name="email" placeholder="testas@testas.com" required />
-          <Field onChange={onPasswordChange} name="password" type="password" placeholder="testas123" required minLength={8} />
+          <Field name="email"
+            type="email"
+            placeholder="testas@testas.com"
+            required
+            onChange={onEmailChange}
+          />
+          <Field name="password"
+            type="password"
+            placeholder="testas123"
+            required
+            minLength={8}
+            onChange={onPasswordChange}
+          />
 
           <Button className="is-primary" type="submit" disabled={!email || !password}>
             Login

@@ -16,7 +16,7 @@ export const MessageContainer = () => {
   const messageContainerContent = (message != null) ? (
     <div className="messageContainer">
       <span className="content">{message}</span>
-      <button data-testid="notification-submit-button" onClick={closeMessage}>
+      <button onClick={closeMessage}>
         X
       </button>
     </div >

@@ -11,6 +11,7 @@ import { AuthProvider } from "./components/AuthProvider";
 import { RequireAuth } from "./components/RequireAuth";
 import { MessageProvider } from "./components/MessageProvider";
 import { MessageContainer } from "./organisms/MessageContainer";
+import { MyFooter } from "./organisms/MyFooter";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               } />
 
           </Routes>
+          <MyFooter />
 
         </Container>
       </MessageProvider>

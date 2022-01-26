@@ -1,7 +1,7 @@
 //import process from "process";
 const { REACT_APP_BASE_URL } = process.env;
 
- //const AUTH_URL = process.env.REACT_APP_BASE_URL+"/v1/auth/";
+//const AUTH_URL = process.env.REACT_APP_BASE_URL+"/v1/auth/";
 //const AUTH_URL = "https://autumn-delicate-wilderness.glitch.me/v1/auth";
 //const AUTH_URL = `${process.env.REACT_APP_BASE_URL}/v1/auth/`;
 console.log(REACT_APP_BASE_URL);
@@ -19,9 +19,9 @@ export class Auth {
                 password,
             }),
         });
-
+        console.log(res);
         return res.json();
-        
+
     }
 
     static async login(email, password) {
